@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -240,7 +240,7 @@ export default function HomePage() {
           >
             Hi, I&apos;m{" "}
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              {APP_NAME}
+              Afzal Rao
             </span>
           </motion.h1>
 
@@ -629,153 +629,4 @@ export default function HomePage() {
               <motion.div
                 key={t.name}
                 variants={scaleIn}
-                whileHover={shouldReduceMotion ? {} : { y: -4 }}
-                className="relative p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-white/15 transition-all duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/3 to-purple-500/3 rounded-2xl" />
-                <div className="relative">
-                  <StarRating count={t.stars} />
-                  <p className="mt-4 text-sm text-white/70 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
-                  <div className="mt-6 flex items-center gap-3">
-                    <img
-                      src={t.avatar}
-                      alt={t.name}
-                      className="w-10 h-10 rounded-full object-cover border border-white/10"
-                    />
-                    <div>
-                      <p className="text-sm font-semibold text-white">{t.name}</p>
-                      <p className="text-xs text-white/40">{t.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── CONTACT ──────────────────────────────────────────────────────── */}
-      <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#0d0d0d]">
-        <GradientOrb className="w-[500px] h-[500px] bg-indigo-600 left-1/2 -translate-x-1/2 -top-32" />
-        <div className="max-w-2xl mx-auto">
-          <motion.div
-            {...motionProps(fadeInUp)}
-            className="text-center mb-12"
-          >
-            <SectionLabel>Contact</SectionLabel>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
-              Let&apos;s work together
-            </h2>
-            <p className="mt-4 text-white/50 max-w-lg mx-auto">
-              Have a project in mind? I&apos;d love to hear about it. Drop me a message and I&apos;ll get back to you within 24 hours.
-            </p>
-          </motion.div>
-
-          <motion.div {...motionProps(scaleIn)}>
-            <AnimatePresence mode="wait">
-              {formSent ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-16"
-                >
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle size={28} className="text-emerald-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Message sent!</h3>
-                  <p className="text-white/50">I&apos;ll be in touch soon.</p>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  onSubmit={handleContactSubmit}
-                  className="space-y-4"
-                >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={contactForm.name}
-                        onChange={handleContactChange}
-                        placeholder="Your name"
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-white/8 transition-all duration-200"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Email</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={contactForm.email}
-                        onChange={handleContactChange}
-                        placeholder="your@email.com"
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-white/8 transition-all duration-200"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs text-white/40 mb-1.5 uppercase tracking-wider">Message</label>
-                    <textarea
-                      name="message"
-                      value={contactForm.message}
-                      onChange={handleContactChange}
-                      placeholder="Tell me about your project..."
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-white/8 transition-all duration-200 resize-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 hover:-translate-y-0.5"
-                  >
-                    Send message
-                  </button>
-                </motion.form>
-              )}
-            </AnimatePresence>
-          </motion.div>
-
-          {/* Direct contact links */}
-          <motion.div
-            {...motionProps(fadeInUp)}
-            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
-          >
-            <a
-              href={`mailto:${APP_EMAIL}`}
-              className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors duration-200"
-            >
-              <Mail size={15} />
-              {APP_EMAIL}
-            </a>
-            <span className="hidden sm:block w-px h-4 bg-white/10" />
-            <a
-              href={APP_TWITTER}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors duration-200"
-            >
-              <Twitter size={15} />
-              @alexmorgan
-            </a>
-            <span className="hidden sm:block w-px h-4 bg-white/10" />
-            <a
-              href={APP_LINKEDIN}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors duration-200"
-            >
-              <Linkedin size={15} />
-              LinkedIn
-            </a>
-          </motion.div>
-        </div>
-      </section>
-    </main>
-  );
-}
+                whileHover={shouldReduc
